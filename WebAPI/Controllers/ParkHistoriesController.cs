@@ -69,5 +69,15 @@ namespace WebAPI.Controllers
 			}
 			return BadRequest(result);
 		}
+		[HttpGet("processesbetweeninterval")]
+		public IActionResult ProcessesBetweenInterval(int secondBegin, int secondFinal)
+		{
+			var result = _parkHistoryService.GetProcessesBetweenInterval(secondBegin, secondFinal);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 	}
 }

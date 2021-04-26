@@ -12,6 +12,6 @@ namespace Business.Abstract
 		IResult Delete(int minute);
 		IResult Update(Price price);
 		IDataResult<List<Price>> GetAll();
-		IDataResult<Price> GetById(int Minute);
+		IDataResult<Price> GetById(int MinuteBegin);
 	}
 }

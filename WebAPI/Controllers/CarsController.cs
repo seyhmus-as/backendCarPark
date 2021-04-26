@@ -70,5 +70,15 @@ namespace WebAPI.Controllers
 			}
 			return BadRequest(result);
 		}
+		[HttpPost("takeout")]
+		public IActionResult TakeOut(int id)
+		{
+			var result = _carService.TakeOut(id);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 	}
 }

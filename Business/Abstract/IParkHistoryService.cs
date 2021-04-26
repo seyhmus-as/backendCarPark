@@ -13,5 +13,6 @@ namespace Business.Abstract
 		IResult Update(ParkHistory parkHistory);
 		IDataResult<List<ParkHistory>> GetAll();
 		IDataResult<List<ParkHistory>> GetById(int carId);
+		IDataResult<List<ParkHistory>> GetProcessesBetweenInterval(int secondBegin, int secondFinal);
 	}
 }

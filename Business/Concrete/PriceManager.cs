@@ -22,9 +22,9 @@ namespace Business.Concrete
 			_priceDal.Add(price);
 			return new SuccessResult(Messages.PriceAdded);
 		}
-		public IResult Delete(int minute)
+		public IResult Delete(int minuteBegin)
 		{
-			_priceDal.Delete(_priceDal.Get(p=>p.Minute==minute));
+			_priceDal.Delete(_priceDal.Get(p=>p.MinuteBegin==minuteBegin));
 			return new SuccessResult(Messages.PriceDeleted);
 		}
 		public IResult Update(Price price)
@@ -36,9 +36,9 @@ namespace Business.Concrete
 		{
 			return new SuccessDataResult<List<Price>>(_priceDal.GetAll(), Messages.PriceListed);
 		}
-		public IDataResult<Price> GetById(int Minute)
+		public IDataResult<Price> GetById(int MinuteBegin)
 		{
-			return new SuccessDataResult<Price>(_priceDal.Get(p => p.Minute == Minute));
+			return new SuccessDataResult<Price>(_priceDal.Get(p => p.MinuteBegin == MinuteBegin));
 		}
 
 	}

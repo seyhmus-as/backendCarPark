@@ -24,7 +24,7 @@ namespace Business.Concrete
 		}
 		public IResult Delete(int id)
 		{
-			_parkHistoryDal.Delete(_parkHistoryDal.Get(p=>p.Id==id));
+			_parkHistoryDal.Delete(_parkHistoryDal.Get(p => p.Id == id));
 			return new SuccessResult(Messages.parkHistoryDeleted);
 		}
 		public IResult Update(ParkHistory parkHistory)
@@ -39,6 +39,14 @@ namespace Business.Concrete
 		public IDataResult<List<ParkHistory>> GetById(int carId)
 		{
 			return new SuccessDataResult<List<ParkHistory>>(_parkHistoryDal.GetAll(p => p.CarId == carId));
+		}
+		public IDataResult<List<ParkHistory>> GetProcessesBetweenInterval(int secondBegin, int secondFinal)
+		{
+			var processesBetweenInterval = _parkHistoryDal.GetAll(p =>
+					(p.ExitTime.Value.Second > secondBegin && p.ExitTime.Value.Second < secondFinal) ||
+					(p.EntryTime.Value.Second > secondBegin && p.EntryTime.Value.Second < secondFinal)
+				);
+			return new SuccessDataResult<List<ParkHistory>>(processesBetweenInterval);
 		}
 	}
 }

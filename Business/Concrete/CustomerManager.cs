@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -16,7 +17,8 @@ namespace Business.Concrete
 		public CustomerManager(ICustomerDal customerDal)
 		{
 			_customerDal = customerDal;
-		}
+		}	
+		[SecuredOperation("admin")]
 		public IResult Add(Customer customer)
 		{
 			_customerDal.Add(customer);
@@ -29,7 +31,8 @@ namespace Business.Concrete
 		}
 		public IResult Update(Customer customer)
 		{
-			_customerDal.Delete(_customerDal.Get(p => p.Id == customer.Id));
+			/*var updatedL = _customerDal.Get(p => p.Id == customer.Id);
+ 			_customerDal.Update(updatedL);*/
 			_customerDal.Update(customer);
 			return new SuccessResult(Messages.CustomerUpdate);
 		}
